@@ -9,7 +9,11 @@ class COLOR_CONST {
   static final WHITE_70 = HexColor("#B3FFFFFF");
   static final BLACK = HexColor("#000000");
   static final BLACK2 = HexColor("#333333");
+  static final BLACK_30 = HexColor("#4D000000");
   static final GRAY1 = HexColor("#999999");
   static final GRAY2 = HexColor("#F8F8F8");
+  static final GRAY3 = HexColor("#F4F4F4");
+  static final GRAY4 = HexColor("#666666");
+  static final GRAY5 = HexColor("#C1C1C1");
   static final ITEM_BG = HexColor("#F3F6F8");
 }
