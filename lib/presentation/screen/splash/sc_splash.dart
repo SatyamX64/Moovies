@@ -2,7 +2,21 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:myseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+import '../../app_router.dart';
+
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    openLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,5 +30,11 @@ class SplashScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void openLogin() {
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushNamed(context, AppRouter.LOGIN);
+    });
   }
 }
