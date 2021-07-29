@@ -16,4 +16,9 @@ class COLOR_CONST {
   static final GRAY4 = HexColor("#666666");
   static final GRAY5 = HexColor("#C1C1C1");
   static final ITEM_BG = HexColor("#F3F6F8");
+
+  static final GOOGLE_BTN = HexColor("#FFF1F0");
+  static final GOOGLE_BORDER_BTN = HexColor("#F14336");
+  static final FACEBOOK_BTN = HexColor("#F5F9FF");
+  static final FACEBOOK_BORDER_BTN = HexColor("#3164CE");
 }

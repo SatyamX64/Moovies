@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:myseat/presentation/common_widgets/widget_spacer.dart';
 import 'package:myseat/utils/my_const/my_const.dart';
 
+import 'widget_btn_facebook.dart';
+import 'widget_btn_google.dart';
+
 class WidgetLoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -36,6 +39,21 @@ class WidgetLoginForm extends StatelessWidget {
           _buildButtonLogin(),
           WidgetSpacer(height: 30),
           _buildTextOr(),
+          WidgetSpacer(height: 20),
+          _buildSocialLogin(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSocialLogin() {
+    return Container(
+      height: 40,
+      child: Row(
+        children: <Widget>[
+          WidgetBtnGoogle(),
+          SizedBox(width: 20),
+          WidgetBtnFacebook(),
         ],
       ),
     );
