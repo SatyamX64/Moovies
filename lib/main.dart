@@ -1,9 +1,17 @@
+import 'package:flutter/services.dart';
 import 'package:myseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/app_router.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: COLOR_CONST.STATUS_BAR,
+    ),
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
