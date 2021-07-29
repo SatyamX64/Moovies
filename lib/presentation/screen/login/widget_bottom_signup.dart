@@ -5,7 +5,7 @@ class WidgetBottomSignUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 24,bottom: 12),
+      padding: EdgeInsets.only(top: 24),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
