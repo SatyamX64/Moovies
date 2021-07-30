@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
-import 'package:flutter/material.dart';
 
 class WidgetRecommendedSeats extends StatelessWidget {
   final items = [
@@ -60,33 +61,40 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.asset(
-            item.photo,
-            width: 93,
-            height: 124,
-            fit: BoxFit.contain,
-          ),
-        ),
-        WidgetSpacer(height: 6),
-        Text(item.title, style: FONT_CONST.REGULAR_BLACK2_12),
-        WidgetSpacer(height: 2),
-        Row(
-          children: <Widget>[
-            Icon(
-              Icons.favorite,
-              color: COLOR_CONST.DEFAULT,
-              size: 14,
+    void openShowDetails() {
+      Navigator.pushNamed(context, AppRouter.ALL_SHOWS);
+    }
+
+    return GestureDetector(
+      onTap: openShowDetails,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              item.photo,
+              width: 93,
+              height: 124,
+              fit: BoxFit.contain,
             ),
-            WidgetSpacer(width: 6),
-            Text('${item.likePercent}%', style: FONT_CONST.REGULAR_GRAY6_10)
-          ],
-        ),
-      ],
+          ),
+          WidgetSpacer(height: 6),
+          Text(item.title, style: FONT_CONST.REGULAR_BLACK2_12),
+          WidgetSpacer(height: 2),
+          Row(
+            children: <Widget>[
+              Icon(
+                Icons.favorite,
+                color: COLOR_CONST.DEFAULT,
+                size: 14,
+              ),
+              WidgetSpacer(width: 6),
+              Text('${item.likePercent}%', style: FONT_CONST.REGULAR_GRAY6_10)
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
