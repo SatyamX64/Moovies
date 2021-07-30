@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.satyamx64.findseat">
+
+   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
    <application
         android:label="findseat"
         android:icon="@mipmap/ic_launcher">
