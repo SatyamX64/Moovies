@@ -1,4 +1,4 @@
-package com.satyamx64.myseat
+package com.satyamx64.findseat
 
 import io.flutter.embedding.android.FlutterActivity
 

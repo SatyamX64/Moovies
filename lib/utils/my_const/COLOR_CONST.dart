@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myseat/presentation/custom_ui/custom_ui.dart';
+import 'package:findseat/presentation/custom_ui/custom_ui.dart';
 
 class COLOR_CONST {
   static final DEFAULT = HexColor("#E81667");
@@ -16,6 +16,7 @@ class COLOR_CONST {
   static final GRAY3 = HexColor("#F4F4F4");
   static final GRAY4 = HexColor("#666666");
   static final GRAY5 = HexColor("#C1C1C1");
+  static final GRAY6 = HexColor("#707070");
   static final ITEM_BG = HexColor("#F3F6F8");
   static final BLUE = HexColor("#222539");
 

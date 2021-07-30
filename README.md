@@ -1,4 +1,4 @@
-# myseat
+# findseat
 
 A new Flutter project.
 

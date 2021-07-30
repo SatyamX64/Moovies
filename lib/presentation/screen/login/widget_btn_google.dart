@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:myseat/utils/my_const/my_const.dart';
+import 'package:findseat/utils/my_const/my_const.dart';
 
 class WidgetBtnGoogle extends StatelessWidget {
   @override

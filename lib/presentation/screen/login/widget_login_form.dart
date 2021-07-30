@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myseat/presentation/common_widgets/widget_spacer.dart';
-import 'package:myseat/utils/my_const/my_const.dart';
+import 'package:findseat/presentation/common_widgets/widget_spacer.dart';
+import 'package:findseat/utils/my_const/my_const.dart';
 
 import 'widget_btn_facebook.dart';
 import 'widget_btn_google.dart';

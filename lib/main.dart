@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:myseat/utils/my_const/my_const.dart';
+import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
 import 'presentation/app_router.dart';

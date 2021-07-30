@@ -1,6 +1,6 @@
-import 'package:myseat/presentation/common_widgets/barrel_common_widgets.dart';
-import 'package:myseat/presentation/common_widgets/widget_spacer.dart';
-import 'package:myseat/utils/my_const/my_const.dart';
+import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
+import 'package:findseat/presentation/common_widgets/widget_spacer.dart';
+import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
 class WidgetTopWelcome extends StatelessWidget {
