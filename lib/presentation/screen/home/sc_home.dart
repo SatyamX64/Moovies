@@ -12,9 +12,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             WidgetHomeToolbar(),
             WidgetHomeBanner(),
-            WidgetSpacer(
-              height: 30,
-            ),
+            WidgetSpacer(height: 30),
             WidgetHomeCategories(),
             WidgetSpacer(height: 30),
             WidgetRecommendedSeats(),
@@ -22,7 +20,9 @@ class HomeScreen extends StatelessWidget {
             WidgetNearbyTheatres(),
             WidgetSpacer(height: 30),
             WidgetHomeEvents(),
+            WidgetSpacer(height: 30),
             WidgetHomePlays(),
+            WidgetSpacer(height: 30),
           ],
         ),
       ),
