@@ -3,6 +3,10 @@
    <application
         android:label="findseat"
         android:icon="@mipmap/ic_launcher">
+
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyAh9zLZ2W2yMW_R0eMxH-thhONdi3XZ_aY"/>
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
