@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
       ),
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.HOME,
+      initialRoute: AppRouter.SHOW_INFO,
     );
   }
 }
