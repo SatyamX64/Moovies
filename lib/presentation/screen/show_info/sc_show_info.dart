@@ -14,10 +14,11 @@ class ShowInfoScreen extends StatelessWidget {
               children: <Widget>[
                 WidgetShowTrailer(),
                 WidgetShowDesc(),
-                WidgetSpacer(height: 14,),
+                WidgetSpacer(height: 14),
                 WidgetOffers(),
-                WidgetSpacer(height: 14,),
+                WidgetSpacer(height: 14),
                 WidgetShowReview(),
+                WidgetSpacer(height: 14),
                 WidgetShowCasts(),
               ],
             ),
