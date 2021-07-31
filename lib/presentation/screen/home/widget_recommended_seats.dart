@@ -62,7 +62,7 @@ class _WidgetItemRecommendedSeat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void openShowDetails() {
-      Navigator.pushNamed(context, AppRouter.ALL_SHOWS);
+      Navigator.pushNamed(context, AppRouter.SHOW_INFO);
     }
 
     return GestureDetector(

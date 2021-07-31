@@ -1,3 +1,4 @@
+import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/presentation/common_widgets/widget_spacer.dart';
 import 'package:findseat/presentation/custom_ui/svg_image.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
@@ -53,29 +54,36 @@ class WidgetHomeCategories extends StatelessWidget {
 }
 
 class _WidgetItemCategory extends StatelessWidget {
-  final  _ItemCategoryVM item;
+  final _ItemCategoryVM item;
 
   _WidgetItemCategory(this.item);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          width: 34,
-          height: 34,
-          child: Center(
-            child: MySvgImage(
-              path: item.image,
-              width: 28,
-              height: 28,
-              applyColorFilter: false,
+    void openAllShows() {
+      Navigator.pushNamed(context, AppRouter.ALL_SHOWS);
+    }
+
+    return GestureDetector(
+      onTap: openAllShows,
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: 34,
+            height: 34,
+            child: Center(
+              child: MySvgImage(
+                path: item.image,
+                width: 28,
+                height: 28,
+                applyColorFilter: false,
+              ),
             ),
           ),
-        ),
-        WidgetSpacer(height: 6),
-        Text(item.title, style: FONT_CONST.REGULAR_GRAY6_12),
-      ],
+          WidgetSpacer(height: 6),
+          Text(item.title, style: FONT_CONST.REGULAR_GRAY6_12),
+        ],
+      ),
     );
   }
 }

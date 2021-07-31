@@ -1,3 +1,4 @@
+import 'package:findseat/presentation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:findseat/presentation/common_widgets/widget_spacer.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
@@ -5,7 +6,12 @@ import 'package:findseat/utils/my_const/my_const.dart';
 import 'widget_btn_facebook.dart';
 import 'widget_btn_google.dart';
 
-class WidgetLoginForm extends StatelessWidget {
+class WidgetLoginForm extends StatefulWidget {
+  @override
+  _WidgetLoginFormState createState() => _WidgetLoginFormState();
+}
+
+class _WidgetLoginFormState extends State<WidgetLoginForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,7 +96,9 @@ class WidgetLoginForm extends StatelessWidget {
       width: double.infinity,
       height: 50,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, AppRouter.HOME);
+        },
         style: ElevatedButton.styleFrom(
           primary: COLOR_CONST.DEFAULT,
           shape: RoundedRectangleBorder(
