@@ -32,6 +32,8 @@ class COLOR_CONST {
   static final TAG_BG = HexColor("#FFE5EF");
   static final GIFT_BG1 = HexColor("#FCCAC6");
   static final GIFT_BG2 = HexColor("#2687D57E");
+  static final TIME_SLOT_BG = HexColor("#FCFCFC");
+  static final TIME_SLOT_BORDER = HexColor("#E5E5E5");
 
   static final STATUS_BAR = MaterialColor(0xFF2E3147, {});
 }
