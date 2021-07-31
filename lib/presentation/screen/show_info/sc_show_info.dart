@@ -1,3 +1,4 @@
+import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/presentation/custom_ui/custom_ui.dart';
 import 'package:findseat/presentation/screen/show_info/barrel_show_info.dart';
@@ -5,8 +6,11 @@ import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
 class ShowInfoScreen extends StatelessWidget {
+  late BuildContext _context;
+
   @override
   Widget build(BuildContext context) {
+    _context = context;
     return SafeArea(
       child: Scaffold(
         body: Stack(
@@ -33,6 +37,10 @@ class ShowInfoScreen extends StatelessWidget {
     );
   }
 
+  void openBookCineTimeSlot() {
+    Navigator.pushNamed(_context, AppRouter.BOOK_TIME_SLOT);
+  }
+
   Widget _buildBtnBookSeat() {
     return Positioned(
       bottom: 0,
@@ -42,7 +50,9 @@ class ShowInfoScreen extends StatelessWidget {
         height: 54,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: COLOR_CONST.DEFAULT, elevation: 0,shape: RoundedRectangleBorder()),
+              primary: COLOR_CONST.DEFAULT,
+              elevation: 0,
+              shape: RoundedRectangleBorder()),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -55,7 +65,7 @@ class ShowInfoScreen extends StatelessWidget {
               Text('Book seats', style: FONT_CONST.MEDIUM_WHITE_16),
             ],
           ),
-          onPressed: () {},
+          onPressed: openBookCineTimeSlot,
         ),
       ),
     );
