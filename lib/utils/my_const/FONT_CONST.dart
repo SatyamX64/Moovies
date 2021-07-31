@@ -53,6 +53,9 @@ class FONT_CONST {
   static final REGULAR_GRAY6_10 = REGULAR_GRAY6.copyWith(fontSize: 10);
   static final REGULAR_GRAY6_12 = REGULAR_GRAY6.copyWith(fontSize: 12);
 
+  static final REGULAR_BLUE = REGULAR.copyWith(color: COLOR_CONST.BLUE);
+  static final REGULAR_BLUE_14 = REGULAR_BLUE.copyWith(fontSize: 14);
+
   //MEDIUM
   static final MEDIUM_WHITE = MEDIUM.copyWith(color: COLOR_CONST.WHITE);
   static final MEDIUM_WHITE_14 = MEDIUM_WHITE.copyWith(fontSize: 14);
@@ -77,6 +80,7 @@ class FONT_CONST {
 
   static final MEDIUM_BLUE = MEDIUM.copyWith(color: COLOR_CONST.BLUE);
   static final MEDIUM_BLUE_14 = MEDIUM_BLUE.copyWith(fontSize: 14);
+  static final MEDIUM_BLUE_16 = MEDIUM_BLUE.copyWith(fontSize: 16);
 
   //SEMI_BOLD
   static final SEMIBOLD_WHITE = SEMIBOLD.copyWith(color: COLOR_CONST.WHITE);

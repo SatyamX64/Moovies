@@ -3,6 +3,7 @@ import 'package:findseat/presentation/custom_ui/custom_ui.dart';
 
 class COLOR_CONST {
   static final DEFAULT = HexColor("#E81667");
+  static final DEFAULT_5 =HexColor("#0DE81667");
   static final RED = HexColor("#F93F3E");
   static final RED2 = HexColor("#D05045");
   static final GREEN = HexColor("#2EC492");
