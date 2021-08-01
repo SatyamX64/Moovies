@@ -2,6 +2,7 @@ import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart'
 import 'package:findseat/presentation/screen/cine_date_picker/barrel_cine_date_picker.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class WidgetItemWeek extends StatefulWidget {
   final ItemWeek itemWeek;
@@ -13,14 +14,58 @@ class WidgetItemWeek extends StatefulWidget {
 }
 
 class _WidgetItemWeekState extends State<WidgetItemWeek> {
-
+  late CineDatePickerScreenProvider cineDatePickerScreenProvider;
   @override
   void initState() {
     super.initState();
   }
 
+  Widget _buildItemDate(int index) {
+    var selectedDate =
+        cineDatePickerScreenProvider.selectedDate;
+    var date = widget.itemWeek.dates[index];
+
+    var isToday = date.day == 14;
+    var isSelected = selectedDate.day == date.day;
+
+    var bgColor = isSelected ? COLOR_CONST.DEFAULT : COLOR_CONST.GRAY2;
+    var textColor = isSelected ? COLOR_CONST.WHITE : COLOR_CONST.GRAY4;
+    var textDate = date.day.toString();
+
+    return GestureDetector(
+      onTap: () =>
+          context.read<CineDatePickerScreenProvider>().onDateSelected(date),
+      child: Container(
+        width: 32,
+        height: 32,
+        decoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(4),
+          color: bgColor,
+        ),
+        child: isToday
+            ? Column(
+                children: <Widget>[
+                  Text('Today',
+                      style: FONT_CONST.REGULAR_GRAY4_8
+                          .copyWith(fontSize: 7, color: textColor)),
+                  Text(textDate,
+                      style: FONT_CONST.REGULAR_GRAY4_14
+                          .copyWith(color: textColor)),
+                ],
+              )
+            : Center(
+                child: Text(textDate,
+                    style:
+                        FONT_CONST.REGULAR_GRAY4_14.copyWith(color: textColor)),
+              ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    cineDatePickerScreenProvider = context.watch<CineDatePickerScreenProvider>();
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
@@ -48,43 +93,6 @@ class _WidgetItemWeekState extends State<WidgetItemWeek> {
           ),
         )
       ],
-    );
-  }
-
-  Widget _buildItemDate(int index) {
-    var date = widget.itemWeek.dates[index];
-
-    var isToday = date.day == 14;
-    var isSelected = date.day == 14;
-
-    var bgColor = isSelected ? COLOR_CONST.DEFAULT : COLOR_CONST.GRAY2;
-    var textColor = isSelected ? COLOR_CONST.WHITE : COLOR_CONST.GRAY4;
-    var textDate = date.day.toString();
-
-    return Container(
-      width: 32,
-      height: 32,
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(4),
-        color: bgColor,
-      ),
-      child: isToday
-          ? Column(
-              children: <Widget>[
-                Text('Today',
-                    style: FONT_CONST.REGULAR_GRAY4_8
-                        .copyWith(fontSize: 7, color: textColor)),
-                Text(textDate,
-                    style:
-                        FONT_CONST.REGULAR_GRAY4_14.copyWith(color: textColor)),
-              ],
-            )
-          : Center(
-              child: Text(textDate,
-                  style:
-                      FONT_CONST.REGULAR_GRAY4_14.copyWith(color: textColor)),
-            ),
     );
   }
 }

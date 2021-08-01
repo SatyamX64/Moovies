@@ -2,29 +2,46 @@ import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart'
 import 'package:findseat/presentation/screen/cine_date_picker/barrel_cine_date_picker.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CineDatePickerScreen extends StatefulWidget {
   @override
   _CineDatePickerScreenState createState() => _CineDatePickerScreenState();
 }
 
-class _CineDatePickerScreenState extends State<CineDatePickerScreen> {
+class CineDatePickerScreenProvider with ChangeNotifier {
+  DateTime selectedDate;
+
+  CineDatePickerScreenProvider({required this.selectedDate});
+
+  void onDateSelected(DateTime date) {
+    selectedDate = date;
+    notifyListeners();
+  }
+}
+
+class _CineDatePickerScreenState extends State<CineDatePickerScreen>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: COLOR_CONST.WHITE,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(20),
-            child: Text('Friday, Nov 14, 2019',
-                style: FONT_CONST.REGULAR_BLACK2_14),
-          ),
-          Divider(color: COLOR_CONST.DIVIDER, height: 1),
-          _buildListDateByWeek(),
-        ],
+    return ChangeNotifierProvider(
+      create: (ctx) => CineDatePickerScreenProvider(
+          selectedDate: _getStartDate().add(Duration(days: 5))),
+      child: Container(
+        color: COLOR_CONST.WHITE,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text('Friday, Nov 14, 2019',
+                  style: FONT_CONST.REGULAR_BLACK2_14),
+            ),
+            Divider(color: COLOR_CONST.DIVIDER, height: 1),
+            _buildListDateByWeek(),
+          ],
+        ),
       ),
     );
   }
