@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screen/all_shows/sc_all_shows.dart';
 import 'screen/booking/barrel_booking.dart';
+import 'screen/booking/book_seat_type/barrel_book_seat_type.dart';
 import 'screen/home/sc_home.dart';
 import 'screen/login/sc_login.dart';
 import 'screen/show_info/sc_show_info.dart';
@@ -30,6 +31,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => ShowInfoScreen());
       case BOOK_TIME_SLOT:
         return MaterialPageRoute(builder: (_) => BookTimeSlotScreen());
+      case BOOK_SEAT_TYPE:
+        return MaterialPageRoute(builder: (_) => BookSeatTypeScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
