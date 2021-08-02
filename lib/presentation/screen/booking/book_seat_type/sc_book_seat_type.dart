@@ -1,6 +1,7 @@
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/presentation/screen/booking/barrel_booking.dart';
 import 'package:findseat/presentation/screen/booking/book_seat_type/barrel_book_seat_type.dart';
+import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
 class BookSeatTypeScreen extends StatefulWidget {
@@ -35,6 +36,7 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
+                    WidgetToolbar(title: 'Black Panther', actions: Container()),
                     WidgetCineTimeSlot(_itemCineTimeSlot),
                     WidgetSpacer(height: 14),
                     WidgetHowManySeats(),
@@ -54,8 +56,18 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
       left: 0,
       right: 0,
       bottom: 0,
-      child: Placeholder(
-        fallbackHeight: 56,
+      child: Container(
+        height: 54,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(primary: COLOR_CONST.DEFAULT),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Select seats', style: FONT_CONST.MEDIUM_WHITE_16),
+            ],
+          ),
+          onPressed: () {},
+        ),
       ),
     );
   }
