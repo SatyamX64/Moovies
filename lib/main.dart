@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
       ),
       onGenerateRoute: AppRouter.generateRoute,
-      initialRoute: AppRouter.BOOK_SEAT_TYPE,
+      initialRoute: AppRouter.BOOK_SEAT_SLOT,
     );
   }
 }
