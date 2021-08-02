@@ -52,6 +52,8 @@ class FONT_CONST {
 
   static final REGULAR_GRAY5 = REGULAR.copyWith(color: COLOR_CONST.GRAY5);
   static final REGULAR_GRAY5_10 = REGULAR_GRAY5.copyWith(fontSize: 10);
+  static final REGULAR_GRAY4_40 = REGULAR.copyWith(color: COLOR_CONST.GRAY4_40);
+  static final REGULAR_GRAY4_40_12 = REGULAR_GRAY4_40.copyWith(fontSize: 12);
 
   static final REGULAR_GRAY6 = REGULAR.copyWith(color: COLOR_CONST.GRAY6);
   static final REGULAR_GRAY6_10 = REGULAR_GRAY6.copyWith(fontSize: 10);

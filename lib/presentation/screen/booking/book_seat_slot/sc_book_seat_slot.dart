@@ -47,10 +47,7 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
                 showCineDot: false,
               ),
               WidgetCineScreen(),
-              Container(
-                color: Colors.white,
-                height: 200,
-              )
+              WidgetItemGridSeatSlot(),
             ],
           ),
         ),

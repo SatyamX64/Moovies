@@ -23,6 +23,7 @@ class COLOR_CONST {
   static final GRAY5 = HexColor("#C1C1C1");
   static final GRAY6 = HexColor("#707070");
   static final GRAY7 = HexColor("#DDDDDD");
+  static final GRAY4_40 = HexColor("#66666666");
   static final ITEM_BG = HexColor("#F3F6F8");
   static final BLUE = HexColor("#222539");
   static final DIVIDER = HexColor("#33000000");
@@ -38,4 +39,7 @@ class COLOR_CONST {
   static final TIME_SLOT_BORDER = HexColor("#E5E5E5");
 
   static final STATUS_BAR = MaterialColor(0xFF2E3147, {});
+  static final SEAT_SLOT_BG_BOOKED = HexColor("#EBEBEB");
+  static final SEAT_SLOT_BG = HexColor("#FFFFFF");
+  static final SEAT_SLOT_BORDER = HexColor("#707070");
 }
