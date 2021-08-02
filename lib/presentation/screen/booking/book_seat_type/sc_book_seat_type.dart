@@ -1,3 +1,4 @@
+import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/presentation/screen/booking/barrel_booking.dart';
 import 'package:findseat/presentation/screen/booking/book_seat_type/barrel_book_seat_type.dart';
@@ -71,7 +72,9 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
               Text('Select seats', style: FONT_CONST.MEDIUM_WHITE_16),
             ],
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, AppRouter.BOOK_SEAT_SLOT);
+          },
         ),
       ),
     );
