@@ -40,6 +40,8 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
                     WidgetCineTimeSlot.selected(
                       item: _itemCineTimeSlot,
                       selectedIndex: 0,
+                      showCineName: true,
+                      showCineDot: false,
                     ),
                     WidgetSpacer(height: 14),
                     WidgetHowManySeats(),
