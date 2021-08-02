@@ -3,6 +3,7 @@ import 'package:findseat/presentation/common_widgets/widget_toolbar.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/presentation/screen/booking/barrel_booking.dart';
 import 'package:findseat/presentation/screen/booking/book_seat_slot/barrel_book_seat_slot.dart';
+import 'package:findseat/presentation/screen/payment_method_picker/barrel_payment_method_picker.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
@@ -96,9 +97,20 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
               Text('Pay \$ 200.0', style: FONT_CONST.MEDIUM_WHITE_16),
             ],
           ),
-          onPressed: () {},
+          onPressed: _openPaymentMethod,
         ),
       ),
+    );
+  }
+
+  _openPaymentMethod() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      builder: (context) {
+        return PaymentMethodPickerScreen();
+      },
     );
   }
 

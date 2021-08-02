@@ -3,7 +3,6 @@ import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-
 import 'presentation/app_router.dart';
 
 class MyApp extends StatelessWidget {
@@ -24,6 +23,8 @@ class MyApp extends StatelessWidget {
   }
 
   static void initSystemDefault() {
+    WidgetsFlutterBinding.ensureInitialized();
+
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: COLOR_CONST.STATUS_BAR,
