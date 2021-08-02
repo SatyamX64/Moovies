@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'package:findseat/model/barrel_model.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
@@ -43,7 +44,7 @@ class WidgetItemGridSeatSlot extends StatefulWidget {
 
 class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
   late int maxColumn;
-
+  var selectedSeats = HashMap<String, bool>();
   @override
   void initState() {
     maxColumn = widget.seatRows[0].count + 1;
@@ -105,18 +106,40 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
 
       //ITEM SEAT
       for (var i = 0; i < seatRow.count; i++) {
+        var seatId = "${seatRow.rowId}$i";
+
         var isOff = seatRow.offs.contains(i);
         var isBooked = seatRow.booked.contains(i);
 
-        var itemAvailable = Container(
-          decoration: BoxDecoration(
-            color: isBooked
-                ? COLOR_CONST.SEAT_SLOT_BG_BOOKED
-                : COLOR_CONST.SEAT_SLOT_BG,
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(
-              color: COLOR_CONST.SEAT_SLOT_BORDER,
-              width: 1,
+        var isSelected =
+            selectedSeats.containsKey(seatId) && selectedSeats[seatId]!;
+
+        var itemBgColor = COLOR_CONST.SEAT_SLOT_BG;
+        var itemBorderColor = COLOR_CONST.SEAT_SLOT_BORDER;
+
+        if (isBooked) {
+          itemBgColor = COLOR_CONST.SEAT_SLOT_BG_BOOKED;
+        }
+
+        if (isSelected) {
+          itemBgColor = COLOR_CONST.GREEN;
+          itemBorderColor = COLOR_CONST.TRANS;
+        }
+
+        var itemAvailable = GestureDetector(
+          onTap: () {
+            if (!isBooked) {
+              _handleSelectSeat(seatRow, seatId);
+            }
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              color: itemBgColor,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: itemBorderColor,
+                width: 1,
+              ),
             ),
           ),
 //            child: Center(child: Text('${seatRow.rowId}${i + 1}')),
@@ -129,5 +152,15 @@ class _WidgetItemGridSeatSlotState extends State<WidgetItemGridSeatSlot> {
     });
 
     return widgets;
+  }
+
+  void _handleSelectSeat(SeatRow seatRow, String seatId) {
+    setState(() {
+      if (!selectedSeats.containsKey(seatId)) {
+        selectedSeats[seatId] = true;
+      } else {
+        selectedSeats[seatId] = !selectedSeats[seatId]!;
+      }
+    });
   }
 }
