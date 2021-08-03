@@ -65,7 +65,10 @@ class _BookSeatTypeScreenState extends State<BookSeatTypeScreen> {
       child: Container(
         height: 54,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: COLOR_CONST.DEFAULT),
+          style: ElevatedButton.styleFrom(
+              primary: COLOR_CONST.DEFAULT,
+              elevation: 0,
+              shape: RoundedRectangleBorder()),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

@@ -90,7 +90,9 @@ class _BookSeatSlotScreenState extends State<BookSeatSlotScreen> {
         height: 54,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              primary: COLOR_CONST.DEFAULT, elevation: 0.0),
+              primary: COLOR_CONST.DEFAULT,
+              elevation: 0,
+              shape: RoundedRectangleBorder()),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
