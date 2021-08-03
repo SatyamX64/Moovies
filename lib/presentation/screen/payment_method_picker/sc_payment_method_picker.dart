@@ -2,6 +2,7 @@ import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart'
 import 'package:findseat/presentation/custom_ui/custom_ui.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 class PaymentMethodPickerScreen extends StatefulWidget {
   @override
@@ -36,25 +37,30 @@ class _PaymentMethodPickerScreenState extends State<PaymentMethodPickerScreen> {
               break;
           }
 
-          return Container(
-            height: 70,
-            child: Row(
-              children: <Widget>[
-                index != 1
-                    ? MySvgImage(
-                        height: 40,
-                        width: 40,
-                        path: iconPath,
-                        applyColorFilter: false,
-                      )
-                    : Image.asset(
-                        iconPath,
-                        width: 40,
-                        height: 40,
-                      ),
-                WidgetSpacer(width: 14),
-                Text(name, style: FONT_CONST.REGULAR_GRAY4_14),
-              ],
+          return GestureDetector(
+            onTap: () {
+              _handleMethodClick(index);
+            },
+            child: Container(
+              height: 70,
+              child: Row(
+                children: <Widget>[
+                  index != 1
+                      ? MySvgImage(
+                          height: 40,
+                          width: 40,
+                          path: iconPath,
+                          applyColorFilter: false,
+                        )
+                      : Image.asset(
+                          iconPath,
+                          width: 40,
+                          height: 40,
+                        ),
+                  WidgetSpacer(width: 14),
+                  Text(name, style: FONT_CONST.REGULAR_GRAY4_14),
+                ],
+              ),
             ),
           );
         },
@@ -64,5 +70,21 @@ class _PaymentMethodPickerScreenState extends State<PaymentMethodPickerScreen> {
         itemCount: 3,
       ),
     );
+  }
+
+  void _handleMethodClick(int index) {
+    _cardForm();
+  }
+
+  void _cardForm() {
+    var onError = (error) {
+      print('Error. ${error.toString()}');
+    };
+
+    Stripe.instance.createPaymentMethod(PaymentMethodParams.card())
+        .then((paymentMethod) {
+      print(
+          'Received type=${paymentMethod.type}, id=${paymentMethod.billingDetails.toJson()}');
+    }).catchError(onError);
   }
 }
