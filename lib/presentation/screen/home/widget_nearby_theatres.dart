@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
@@ -24,10 +25,15 @@ class _WidgetNearbyTheatresState extends State<WidgetNearbyTheatres> {
                     style: FONT_CONST.MEDIUM_BLACK2_14),
               ),
               Expanded(
-                child: Text('View all',
-                    style: FONT_CONST.MEDIUM_DEFAULT_10,
-                    textAlign: TextAlign.right),
-              )
+                child: GestureDetector(
+                  onTap: () {
+                    _openAllCine();
+                  },
+                  child: Text('View all',
+                      style: FONT_CONST.MEDIUM_DEFAULT_10,
+                      textAlign: TextAlign.right),
+                ),
+              ),
             ],
           ),
           WidgetSpacer(height: 14),
@@ -35,6 +41,10 @@ class _WidgetNearbyTheatresState extends State<WidgetNearbyTheatres> {
         ],
       ),
     );
+  }
+
+  _openAllCine() {
+    Navigator.pushNamed(context, AppRouter.LIST_ALL_CINE);
   }
 
   Completer<GoogleMapController> _controller = Completer();
