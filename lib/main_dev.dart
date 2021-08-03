@@ -12,7 +12,7 @@ void main() {
     create: (_) => AppConfig(
       appName: "FindSeat Dev",
       flavorName: "dev",
-      initialRoute: AppRouter.LIST_ALL_CINE,
+      initialRoute: AppRouter.BOOK_SEAT_SLOT,
     ),
     child: MyApp(),
   ));
