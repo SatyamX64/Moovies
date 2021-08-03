@@ -67,9 +67,7 @@ class _ListAllCineScreenState extends State<ListAllCineScreen>
                 children: <Widget>[
                   Stack(
                     children: <Widget>[
-                      Placeholder(
-                        fallbackHeight: 400,
-                      ),
+                      WidgetCineOnMapResult(items: widget.items),
                       Padding(
                         padding:
                             const EdgeInsets.only(left: 12, right: 10, top: 13),
