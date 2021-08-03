@@ -13,7 +13,7 @@ void main() {
     create: (_) => AppConfig(
       appName: "FindSeat",
       flavorName: "prod",
-      initialRoute: AppRouter.LOGIN,
+      initialRoute: AppRouter.SPLASH,
     ),
     child: MyApp(),
   ));

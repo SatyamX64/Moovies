@@ -81,10 +81,31 @@ class _PaymentMethodPickerScreenState extends State<PaymentMethodPickerScreen> {
       print('Error. ${error.toString()}');
     };
 
-    Stripe.instance.createPaymentMethod(PaymentMethodParams.card())
+    Stripe.instance
+        .createPaymentMethod(PaymentMethodParams.card())
         .then((paymentMethod) {
-      print(
-          'Received type=${paymentMethod.type}, id=${paymentMethod.billingDetails.toJson()}');
+      _showDlgPaymentSuccess(
+          'Payment successfully: Received type=${paymentMethod.type}, id=${paymentMethod.billingDetails.toJson()}');
     }).catchError(onError);
+  }
+
+  Future<void> _showDlgPaymentSuccess(String msg) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Stripe SDK'),
+          content: Text(msg),
+          actions: <Widget>[
+            ElevatedButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
