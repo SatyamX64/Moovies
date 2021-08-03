@@ -27,10 +27,11 @@ class COLOR_CONST {
   static final ITEM_BG = HexColor("#F3F6F8");
   static final BLUE = HexColor("#222539");
   static final DIVIDER = HexColor("#33000000");
+  static final DEFAULT_BORDER = HexColor("#E5E5E5");
+  static final TRANS = HexColor("00000000");
 
   static final GOOGLE_BTN = HexColor("#FFF1F0");
   static final GOOGLE_BORDER_BTN = HexColor("#F14336");
-  static final TRANS = HexColor("00000000");
   static final FACEBOOK_BTN = HexColor("#F5F9FF");
   static final FACEBOOK_BORDER_BTN = HexColor("#3164CE");
   static final TAG_BG = HexColor("#FFE5EF");
