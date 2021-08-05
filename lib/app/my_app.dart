@@ -12,6 +12,7 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 
 import '../presentation/app_router.dart';
 import 'auth_bloc/bloc.dart';
+import 'bloc_observer.dart';
 
 class MyApp extends StatelessWidget {
   final UserRepository _userRepository;
@@ -60,15 +61,19 @@ class MyApp extends StatelessWidget {
         statusBarColor: COLOR_CONST.STATUS_BAR,
       ),
     );
+    Bloc.observer = MyBlocObserver();
   }
 
   static Widget runWidget() {
     final userRepository = UserRepository();
 
-    return BlocProvider(
-      create: (context) =>
-          AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
-      child: MyApp(userRepository: userRepository),
+    return RepositoryProvider.value(
+      value: userRepository,
+      child: BlocProvider(
+        create: (context) =>
+            AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+        child: MyApp(userRepository: userRepository),
+      ),
     );
   }
 }

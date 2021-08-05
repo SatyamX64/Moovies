@@ -1,3 +1,4 @@
+import 'package:findseat/presentation/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 
@@ -18,12 +19,17 @@ class WidgetBottomSignUp extends StatelessWidget {
           ),
           Flexible(
             flex: 2,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: Text(
-                'Sign up',
-                style: FONT_CONST.SEMIBOLD_WHITE_10.copyWith(
-                  decoration: TextDecoration.underline,
+            child: GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed(AppRouter.REGISTER);
+              },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                  'Sign up',
+                  style: FONT_CONST.SEMIBOLD_WHITE_10.copyWith(
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
             ),

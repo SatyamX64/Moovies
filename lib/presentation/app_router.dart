@@ -6,11 +6,12 @@ import 'screen/booking/book_seat_slot/barrel_book_seat_slot.dart';
 import 'screen/booking/book_seat_type/barrel_book_seat_type.dart';
 import 'screen/home/sc_home.dart';
 import 'screen/login/sc_login.dart';
+import 'screen/register/barrel_register.dart';
 import 'screen/show_info/sc_show_info.dart';
 import 'screen/splash/sc_splash.dart';
 
 class AppRouter {
-  static const String HOME = '/';
+  static const String HOME = '/home';
   static const String SPLASH = '/splash';
   static const String LOGIN = '/login';
   static const String ALL_SHOWS = '/all_shows';
@@ -19,6 +20,7 @@ class AppRouter {
   static const String BOOK_SEAT_TYPE = '/book_seat_type';
   static const String BOOK_SEAT_SLOT = '/book_seat_slot';
   static const String LIST_ALL_CINE = '/list_all_cine';
+  static const String REGISTER = '/register';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -40,6 +42,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => BookSeatSlotScreen());
       case LIST_ALL_CINE:
         return MaterialPageRoute(builder: (_) => ListAllCineScreen());
+      case REGISTER:
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
