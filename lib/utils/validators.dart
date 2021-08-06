@@ -13,4 +13,8 @@ class Validators {
   static bool isValidPassword(String password) {
     return _passwordRegExp.hasMatch(password);
   }
+
+  static bool isValidName(String name) {
+    return name.isNotEmpty;
+  }
 }

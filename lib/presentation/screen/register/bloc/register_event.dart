@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-
 abstract class RegisterEvent extends Equatable {
   const RegisterEvent();
 
@@ -36,17 +35,32 @@ class PasswordChanged extends RegisterEvent {
   }
 }
 
-class Submitted extends RegisterEvent {
-  final String email;
-  final String password;
+class NameChanged extends RegisterEvent {
+  final String name;
 
-  const Submitted({required this.email, required this.password});
+  NameChanged({required this.name});
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [];
 
   @override
   String toString() {
-    return 'Submitted{email: $email, password: $password}';
+    return 'NameChanged{name: $name}';
+  }
+}
+
+class Submitted extends RegisterEvent {
+  final String email;
+  final String password;
+  final String displayName;
+
+  const Submitted({required this.email, required this.password,required this.displayName});
+
+  @override
+  List<Object> get props => [email, password, displayName];
+
+  @override
+  String toString() {
+    return 'Submitted{email: $email, password: $password,  displayName: $displayName}';
   }
 }
