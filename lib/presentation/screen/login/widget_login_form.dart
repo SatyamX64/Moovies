@@ -21,6 +21,9 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool get isPopulated =>
+      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+
   @override
   void initState() {
     _authenticationBloc = BlocProvider.of<AuthenticationBloc>(context);
@@ -33,9 +36,9 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
-        if (state is LoginSuccess) {
+        if (state.isSuccess) {
           _authenticationBloc.add(LoggedIn());
-        } else if (state is LoginFailed) {
+        } else if (state.isFailure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
@@ -50,24 +53,20 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
                 backgroundColor: Colors.red,
               ),
             );
-        } else if (state is LoginLoading) {
-          if (state.isWorking) {
-            ScaffoldMessenger.of(context)
-              ..hideCurrentSnackBar()
-              ..showSnackBar(
-                SnackBar(
-                  content: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text('Processing ...'),
-                      CircularProgressIndicator(),
-                    ],
-                  ),
+        } else if (state.isSubmitting) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('Processing ...'),
+                    CircularProgressIndicator(),
+                  ],
                 ),
-              );
-          } else {
-            ScaffoldMessenger.of(context)..hideCurrentSnackBar();
-          }
+              ),
+            );
         }
       },
       child: BlocBuilder<LoginBloc, LoginState>(
@@ -158,13 +157,17 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
       height: 50,
       child: ElevatedButton(
         onPressed: () {
-          _loginBloc.add(LoginSubmitEmailPasswordEvent(
-            email: _emailController.text,
-            password: _passwordController.text,
-          ));
+          if (isRegisterButtonEnabled()) {
+            _loginBloc.add(LoginSubmitEmailPasswordEvent(
+              email: _emailController.text,
+              password: _passwordController.text,
+            ));
+          }
         },
         style: ElevatedButton.styleFrom(
-          primary: COLOR_CONST.DEFAULT,
+          primary: isRegisterButtonEnabled()
+              ? COLOR_CONST.DEFAULT
+              : COLOR_CONST.GRAY1_50,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(7.0),
           ),
@@ -177,6 +180,12 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
     );
   }
 
+  bool isRegisterButtonEnabled() {
+    return _loginBloc.state.isFormValid &&
+        isPopulated &&
+        !_loginBloc.state.isSubmitting;
+  }
+
   Widget _buildTextFieldPassword() {
     return Container(
       height: 50,
@@ -187,10 +196,19 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
         color: COLOR_CONST.GRAY3,
       ),
       child: Center(
-        child: TextField(
+        child: TextFormField(
           controller: _passwordController,
           style: FONT_CONST.REGULAR_GRAY1_12,
           maxLines: 1,
+          onChanged: (value) {
+            _loginBloc.add(LoginPasswordChanged(password: value));
+          },
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (_) {
+            return !_loginBloc.state.isPasswordValid
+                ? 'Invalid Password'
+                : null;
+          },
           keyboardType: TextInputType.text,
           obscureText: true,
           textAlign: TextAlign.left,
@@ -212,10 +230,17 @@ class _WidgetLoginFormState extends State<WidgetLoginForm> {
         color: COLOR_CONST.GRAY3,
       ),
       child: Center(
-        child: TextField(
+        child: TextFormField(
           controller: _emailController,
           style: FONT_CONST.REGULAR_GRAY1_12,
           maxLines: 1,
+          onChanged: (value) {
+            _loginBloc.add(LoginEmailChanged(email: value));
+          },
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (_) {
+            return !_loginBloc.state.isEmailValid ? 'Invalid Email' : null;
+          },
           keyboardType: TextInputType.text,
           textAlign: TextAlign.left,
           decoration: InputDecoration.collapsed(
