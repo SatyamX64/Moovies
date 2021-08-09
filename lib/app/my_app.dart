@@ -1,5 +1,7 @@
 import 'package:findseat/app_config.dart';
+import 'package:findseat/model/repo/home_repository.dart';
 import 'package:findseat/model/repo/user_repository.dart';
+import 'package:findseat/presentation/screen/home/bloc/bloc.dart';
 import 'package:findseat/presentation/screen/home/sc_home.dart';
 import 'package:findseat/presentation/screen/login/barrel_login.dart';
 import 'package:findseat/presentation/screen/splash/sc_splash.dart';
@@ -66,12 +68,24 @@ class MyApp extends StatelessWidget {
 
   static Widget runWidget() {
     final userRepository = UserRepository();
+    final homeRepository = HomeRepository();
 
-    return RepositoryProvider.value(
-      value: userRepository,
-      child: BlocProvider(
-        create: (context) =>
-            AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<UserRepository>.value(value: userRepository),
+        RepositoryProvider<HomeRepository>.value(value: homeRepository),
+      ],
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) =>
+                AuthenticationBloc(userRepository: userRepository)
+                  ..add(AppStarted()),
+          ),
+          BlocProvider(
+            create: (context) => HomeBloc(homeRepository: homeRepository),
+          ),
+        ],
         child: MyApp(userRepository: userRepository),
       ),
     );
