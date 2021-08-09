@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'barrel_home.dart';
+import 'home_banner/bloc/bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,21 +21,25 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
-                body: Container(
-          color: COLOR_CONST.WHITE,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              WidgetHomeToolbar(),
-              _buildContent(state),
-            ],
-          ),
-        )));
-      },
+    return BlocProvider(
+      create: (context) =>
+          HomeBannerBloc(homeBloc: BlocProvider.of<HomeBloc>(context)),
+      child: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          return SafeArea(
+              child: Scaffold(
+                  body: Container(
+            color: COLOR_CONST.WHITE,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                WidgetHomeToolbar(),
+                _buildContent(state),
+              ],
+            ),
+          )));
+        },
+      ),
     );
   }
 
