@@ -10,6 +10,7 @@ class COLOR_CONST {
   static final GREEN2 = HexColor("#8CC153");
   static final ORANGE = HexColor("#EB8D2F");
   static final WHITE = HexColor("#FFFFFF");
+  static final WHITE_50 = HexColor("#80FFFFFF");
   static final WHITE_70 = HexColor("#B3FFFFFF");
   static final BLACK = HexColor("#000000");
   static final BLACK2 = HexColor("#333333");

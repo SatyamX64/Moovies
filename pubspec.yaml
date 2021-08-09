@@ -44,6 +44,7 @@ dependencies:
   rxdart: ^0.27.1  
   retrofit: ^2.0.1
   json_serializable: ^4.1.0  
+  carousel_slider: ^4.0.0
 
 dev_dependencies:
   flutter_test:
