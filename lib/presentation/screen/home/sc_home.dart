@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'barrel_home.dart';
 import 'home_banner/bloc/bloc.dart';
+import 'home_categories/bloc/bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -21,9 +22,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) =>
-          HomeBannerBloc(homeBloc: BlocProvider.of<HomeBloc>(context)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+            create: (context) =>
+                HomeBannerBloc(homeBloc: BlocProvider.of<HomeBloc>(context))),
+        BlocProvider(
+            create: (context) =>
+                HomeCategoryBloc(homeBloc: BlocProvider.of<HomeBloc>(context))),
+      ],
       child: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
           return SafeArea(
