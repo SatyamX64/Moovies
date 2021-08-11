@@ -40,9 +40,7 @@ class WidgetHomeCategories extends StatelessWidget {
           ),
         );
       } else {
-        return Center(
-          child: Text('No Categories'),
-        );
+        return Container();
       }
     });
   }
