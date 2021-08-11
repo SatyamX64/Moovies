@@ -17,7 +17,7 @@ class WidgetHomeCategories extends StatelessWidget {
   //   _ItemCategoryVM("Activity", "assets/ic_activity.svg"),
   //   _ItemCategoryVM("Monum", "assets/ic_monum.svg"),
   // ];
-  late final List<_ItemCategoryVM> items;
+  late List<_ItemCategoryVM> items;
 
   @override
   Widget build(BuildContext context) {
