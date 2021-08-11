@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             WidgetSpacer(height: 30),
             WidgetRecommendedSeats(),
             WidgetSpacer(height: 30),
-            WidgetNearbyTheatres(),
+            WidgetNearbyCine(),
             WidgetSpacer(height: 30),
             WidgetHomeEvents(),
             WidgetSpacer(height: 30),

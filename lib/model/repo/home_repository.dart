@@ -1,6 +1,7 @@
-import 'package:findseat/model/api/rest_client.dart';
-import 'package:findseat/model/repo/response/api_response.dart';
 import 'package:dio/dio.dart';
+
+import 'package:findseat/model/api/response/api_response.dart';
+import 'package:findseat/model/api/rest_client.dart';
 
 class HomeRepository {
   final dio = Dio();

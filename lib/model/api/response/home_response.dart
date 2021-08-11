@@ -10,7 +10,13 @@ class HomeResponse {
   List<Categoryy> categories;
   @JsonKey(name: "recommended_seats")
   List<Show> recommendedSeats;
-  HomeResponse({required this.banners, required this.categories, required this.recommendedSeats});
+  @JsonKey(name: "nearby_theatres")
+  List<Cine> nearbyTheatres;
+  HomeResponse(
+      {required this.banners,
+      required this.categories,
+      required this.recommendedSeats,
+      required this.nearbyTheatres});
 
   factory HomeResponse.fromJson(Map<String, dynamic> json) =>
       _$HomeResponseFromJson(json);
