@@ -8,8 +8,9 @@ part 'home_response.g.dart';
 class HomeResponse {
   List<Banner> banners;
   List<Categoryy> categories;
-
-  HomeResponse({required this.banners, required this.categories});
+  @JsonKey(name: "recommended_seats")
+  List<Show> recommendedSeats;
+  HomeResponse({required this.banners, required this.categories, required this.recommendedSeats});
 
   factory HomeResponse.fromJson(Map<String, dynamic> json) =>
       _$HomeResponseFromJson(json);
