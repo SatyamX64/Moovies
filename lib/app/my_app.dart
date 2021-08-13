@@ -1,4 +1,5 @@
 import 'package:findseat/model/repo/home_repository.dart';
+import 'package:findseat/model/repo/repo.dart';
 import 'package:findseat/model/repo/user_repository.dart';
 import 'package:findseat/presentation/screen/home/bloc/bloc.dart';
 import 'package:findseat/presentation/screen/home/sc_home.dart';
@@ -23,7 +24,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.light,
@@ -67,11 +67,13 @@ class MyApp extends StatelessWidget {
   static Widget runWidget() {
     final userRepository = UserRepository();
     final homeRepository = HomeRepository();
+    final showRepository = ShowRepository();
 
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<UserRepository>.value(value: userRepository),
         RepositoryProvider<HomeRepository>.value(value: homeRepository),
+        RepositoryProvider<ShowRepository>.value(value: showRepository),
       ],
       child: MultiBlocProvider(
         providers: [

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class SeatRow {
   //A, B, C, ...
   String rowId;

@@ -1,7 +1,11 @@
 export 'banner.dart';
+export 'cast.dart';
 export 'cine.dart';
 export 'distance_filter.dart';
+export 'offer.dart';
 export 'seat_row.dart';
 export 'seat_slot.dart';
 export 'seat_type.dart';
 export 'show.dart';
+export 'show.dart';
+export 'user_review.dart';

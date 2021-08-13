@@ -10,4 +10,7 @@ abstract class RestClient {
 
   @GET("/9KY8")
   Future<HomeResponse> getHomeData();
+
+  @GET("/50R2")
+  Future<AllShowsByTypeResponse> getAllShowsByType();
 }
