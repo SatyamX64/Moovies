@@ -1,11 +1,11 @@
-import 'package:findseat/presentation/app_router.dart';
+import 'package:findseat/model/entity/entity.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
+import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 
 class WidgetListShow extends StatelessWidget {
   final List<ItemShowVM> items;
-
   WidgetListShow(this.items);
 
   @override
@@ -45,13 +45,19 @@ class _WidgetItemShow extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.asset(
-              item.photo,
-              fit: BoxFit.contain,
+            child: AspectRatio(
+              aspectRatio: 150 / 200,
+              child: Image.network(
+                item.photo,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           WidgetSpacer(height: 6),
-          Text(item.title, style: FONT_CONST.REGULAR_BLACK2_14),
+          Text(item.title,
+              style: FONT_CONST.REGULAR_BLACK2_14,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis),
           WidgetSpacer(height: 2),
           Row(
             children: <Widget>[
@@ -71,9 +77,15 @@ class _WidgetItemShow extends StatelessWidget {
 }
 
 class ItemShowVM {
+  Show show;
+
   String photo;
   String title;
   int likePercent;
 
-  ItemShowVM(this.photo, this.title, this.likePercent);
+  ItemShowVM.fromShow(Show show)
+      : show = show,
+        photo = show.thumb,
+        title = show.name,
+        likePercent = show.rate;
 }
