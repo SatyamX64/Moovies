@@ -20,6 +20,9 @@ HomeResponse _$HomeResponseFromJson(Map<String, dynamic> json) {
     nearbyTheatres: (json['nearby_theatres'] as List<dynamic>)
         .map((e) => Cine.fromJson(e as Map<String, dynamic>))
         .toList(),
+    showByCategories: (json['show_by_categories'] as List<dynamic>)
+        .map((e) => ShowByCategoryResponse.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -29,4 +32,5 @@ Map<String, dynamic> _$HomeResponseToJson(HomeResponse instance) =>
       'categories': instance.categories,
       'recommended_seats': instance.recommendedSeats,
       'nearby_theatres': instance.nearbyTheatres,
+      'show_by_categories': instance.showByCategories,
     };

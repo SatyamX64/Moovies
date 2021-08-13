@@ -1,4 +1,3 @@
-import 'package:findseat/app_config.dart';
 import 'package:findseat/model/repo/home_repository.dart';
 import 'package:findseat/model/repo/user_repository.dart';
 import 'package:findseat/presentation/screen/home/bloc/bloc.dart';
@@ -24,7 +23,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var initialRoute = AppConfig.of(context).initialRoute;
 
     return MaterialApp(
       theme: ThemeData(

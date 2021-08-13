@@ -1,5 +1,6 @@
 import 'package:findseat/presentation/common_widgets/widget_spacer.dart';
 import 'package:findseat/presentation/screen/home/bloc/bloc.dart';
+import 'package:findseat/presentation/screen/home/home_shows_category/widget_home_shows_category.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,10 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             WidgetSpacer(height: 30),
             WidgetNearbyCine(),
             WidgetSpacer(height: 30),
-            WidgetHomeEvents(),
-            WidgetSpacer(height: 30),
-            WidgetHomePlays(),
-            WidgetSpacer(height: 30),
+            WidgetHomeShowsCategory(),
           ],
         ),
       );

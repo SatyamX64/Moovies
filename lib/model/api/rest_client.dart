@@ -4,10 +4,10 @@ import 'package:dio/dio.dart';
 
 part 'rest_client.g.dart';
 
-@RestApi(baseUrl: "http://dev.superman-academy.com/mockapi/findseat/")
+@RestApi(baseUrl: "https://jsonkeeper.com/b/")
 abstract class RestClient {
   factory RestClient(Dio dio, {String baseUrl}) = _RestClient;
 
-  @GET("/home.json")
+  @GET("/9KY8")
   Future<HomeResponse> getHomeData();
 }

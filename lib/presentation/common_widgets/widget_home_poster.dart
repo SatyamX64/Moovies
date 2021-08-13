@@ -1,3 +1,4 @@
+import 'package:findseat/model/entity/entity.dart';
 import 'package:findseat/presentation/app_router.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/presentation/custom_ui/svg_image.dart';
@@ -86,11 +87,11 @@ class _WidgetItemPoster extends StatelessWidget {
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: Image.asset(
+              child: Image.network(
                 item.photo,
                 width: 93,
                 height: 124,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               ),
             ),
             WidgetSpacer(height: 4),
@@ -113,4 +114,9 @@ class ItemPosterVM {
   String photo;
 
   ItemPosterVM(this.photo, this.title, this.subTitle);
+
+  ItemPosterVM.fromShow(Show show)
+      : title = show.name,
+        subTitle = "Action - Horor",
+        photo = show.thumb;
 }

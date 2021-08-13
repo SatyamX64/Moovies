@@ -111,5 +111,61 @@
       "lng": 105.800307,
       "rating": 69
     }
+  ],
+  "show_by_categories": [
+    {
+      "category_id": 2,
+      "shows": [
+        {
+          "id": "Hitman Agent Jun",
+          "name": "Hitman Agent Jun",
+          "thumb": "http://superman-academy.com/api/findseat/images/HO00001582.jfif",
+          "banner": "http://",
+          "tags": [
+            "Action",
+            "Drama"
+          ],
+          "rate": 100
+        },
+        {
+          "id": "Call Of The Wind",
+          "name": "Call Of The Wind",
+          "thumb": "http://superman-academy.com/api/findseat/images/HO00002012.jfif",
+          "banner": "http://",
+          "tags": [
+            "Action",
+            "Drama"
+          ],
+          "rate": 92
+        }
+      ]
+    },
+    {
+      "category_id": 3,
+      "shows": [
+        {
+          "id": "Bird of Prey",
+          "name": "Bird of Prey",
+          "thumb": "http://superman-academy.com/api/findseat/images/HO00001804.jfif",
+          "banner": "http://",
+          "tags": [
+            "Action",
+            "Drama"
+          ],
+          "rate": 61
+        },
+        {
+          "id": "Little Women",
+          "name": "Little Women",
+          "thumb": "http://superman-academy.com/api/findseat/images/HO00001988.jfif",
+          "banner": "http://",
+          "tags": [
+            "Action",
+            "Drama"
+          ],
+          "rate": 74
+        }
+      ]
+    }
   ]
 }
