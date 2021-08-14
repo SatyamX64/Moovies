@@ -10,7 +10,7 @@ class Show extends Equatable {
   final String id;
   final String name;
   final String thumb;
-  final String cover;
+  // final String cover;
   final String trailer;
   final int rate;
   final String votes;
@@ -27,7 +27,7 @@ class Show extends Equatable {
       this.id,
       this.name,
       this.thumb,
-      this.cover,
+      // this.cover,
       this.trailer,
       this.rate,
       this.votes,
@@ -47,6 +47,6 @@ class Show extends Equatable {
 
   @override
   String toString() {
-    return 'Show{id: $id, name: $name, thumb: $thumb, cover: $cover, trailer: $trailer, rate: $rate, votes: $votes, tags: $tags, duration: $duration, offers: $offers, totalReviews: $totalReviews, latestReviews: $latestReviews, casts: $casts}';
+    return 'Show{id: $id, name: $name, thumb: $thumb, cover: cover, trailer: $trailer, rate: $rate, votes: $votes, tags: $tags, duration: $duration, offers: $offers, totalReviews: $totalReviews, latestReviews: $latestReviews, casts: $casts}';
   }
 }

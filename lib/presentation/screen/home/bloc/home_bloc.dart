@@ -19,7 +19,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final response = await homeRepository.getHomeData();
       yield HomeLoaded(response);
     } catch (e) {
-      
       yield HomeNotLoaded(e.toString());
     }
   }
