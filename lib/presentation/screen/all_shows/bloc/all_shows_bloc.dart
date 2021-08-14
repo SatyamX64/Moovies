@@ -8,7 +8,7 @@ import 'package:findseat/presentation/screen/all_shows/bloc/bloc.dart';
 class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
   ShowRepository showRepository;
 
-  AllShowsBloc({required this.showRepository}) : super(LoadingData());
+  AllShowsBloc({required this.showRepository}) : super(DisplayListShows.loading());
 
   @override
   Stream<AllShowsState> mapEventToState(AllShowsEvent event) async* {
@@ -43,23 +43,24 @@ class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
   }
 
   Stream<AllShowsState> _mapOpenScreenToState() async* {
-    yield LoadingData();
+    yield DisplayListShows.loading();
+    
 
     try {
       final response = await showRepository.getAllShowsByType();
-      yield DisplayListShows(
-          meta: Meta(
+      yield DisplayListShows.data(
+          Meta(
         nowShowing: response.nowShowing,
         comingSoon: response.comingSoon,
         exclusive: response.exclusive,
       ));
     } catch (e) {
-      yield NoData(msg: e.toString());
+      yield DisplayListShows.error(e.toString());
     }
   }
 
   Stream<AllShowsState> _mapSearchQueryChangedToState(String keyword) async* {
-    yield LoadingData();
+    yield DisplayListShows.loading();
 
     try {
       final response = await showRepository.getAllShowsByType();
@@ -69,15 +70,15 @@ class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
           keyword.isEmpty ||
           show.name.toLowerCase().contains(keyword.toLowerCase());
 
-      yield DisplayListShows(
-        meta: Meta(
+      yield DisplayListShows.data(
+        Meta(
           nowShowing: response.nowShowing.where(query).toList(),
           comingSoon: response.comingSoon.where(query).toList(),
           exclusive: response.exclusive.where(query).toList(),
         ),
       );
     } catch (e) {
-      yield NoData(msg: e.toString());
+      yield DisplayListShows.error(e.toString());
     }
   }
 }
