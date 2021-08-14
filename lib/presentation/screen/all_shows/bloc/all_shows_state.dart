@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:findseat/model/entity/entity.dart';
 import 'package:findseat/presentation/screen/all_shows/bloc/all_shows_bloc.dart';
 
 class AllShowsState extends Equatable {
@@ -45,5 +46,20 @@ class UpdateToolbarState extends AllShowsState {
   @override
   String toString() {
     return 'UpdateSearchIconState{showSearchIcon: $showSearchField}';
+  }
+}
+
+class OpenSortOption extends AllShowsState {
+  final bool isOpen;
+  final SHOW_SORT_BY showSortBy;
+
+  OpenSortOption({required this.isOpen, required this.showSortBy});
+
+  @override
+  List<Object> get props => [isOpen, showSortBy, DateTime.now().millisecond];
+
+  @override
+  String toString() {
+    return 'OpenSortOption{isOpen: $isOpen, showSortBy: $showSortBy}';
   }
 }

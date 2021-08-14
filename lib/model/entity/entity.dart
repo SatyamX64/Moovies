@@ -7,5 +7,5 @@ export 'seat_row.dart';
 export 'seat_slot.dart';
 export 'seat_type.dart';
 export 'show.dart';
-export 'show.dart';
+export 'sort_show.dart';
 export 'user_review.dart';

@@ -76,12 +76,6 @@ class _WidgetAllShowsToolbarState extends State<WidgetAllShowsToolbar> {
   Widget _buildActions(UpdateToolbarState state) {
     return Row(
       children: <Widget>[
-        MySvgImage(
-          path: "assets/ic_search.svg",
-          width: 20,
-          height: 20,
-        ),
-        WidgetSpacer(width: 12),
         InkWell(
           onTap: () {
             BlocProvider.of<AllShowsBloc>(_blocContext).add(
@@ -91,6 +85,17 @@ class _WidgetAllShowsToolbarState extends State<WidgetAllShowsToolbar> {
             path: state.showSearchField
                 ? "assets/ic_close.svg"
                 : "assets/ic_search.svg",
+            width: 20,
+            height: 20,
+          ),
+        ),
+        WidgetSpacer(width: 12),
+        InkWell(
+          onTap: () {
+            BlocProvider.of<AllShowsBloc>(_blocContext).add(ClickIconSort());
+          },
+          child: MySvgImage(
+            path: "assets/ic_more.svg",
             width: 20,
             height: 20,
           ),

@@ -1,3 +1,4 @@
+import 'package:findseat/model/api/response/api_response.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -7,8 +8,14 @@ import 'package:findseat/presentation/screen/all_shows/bloc/bloc.dart';
 
 class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
   ShowRepository showRepository;
+  SHOW_SORT_BY showSortBy = SHOW_SORT_BY.RATING;
 
-  AllShowsBloc({required this.showRepository}) : super(DisplayListShows.loading());
+  int sortByName(Show a, Show b) => a.name.compareTo(b.name);
+
+  int sortByRating(Show a, Show b) => b.rate.compareTo(a.rate);
+
+  AllShowsBloc({required this.showRepository})
+      : super(DisplayListShows.loading());
 
   @override
   Stream<AllShowsState> mapEventToState(AllShowsEvent event) async* {
@@ -22,6 +29,10 @@ class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
       yield* _mapSearchQueryChangedToState("");
     } else if (event is SearchQueryChanged) {
       yield* _mapSearchQueryChangedToState(event.keyword);
+    } else if (event is ClickIconSort) {
+      yield* _mapClickIconSortToState();
+    } else if (event is SortByChanged) {
+      yield* _mapSortByChanged(event.showSortBy);
     }
   }
 
@@ -44,16 +55,10 @@ class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
 
   Stream<AllShowsState> _mapOpenScreenToState() async* {
     yield DisplayListShows.loading();
-    
 
     try {
       final response = await showRepository.getAllShowsByType();
-      yield DisplayListShows.data(
-          Meta(
-        nowShowing: response.nowShowing,
-        comingSoon: response.comingSoon,
-        exclusive: response.exclusive,
-      ));
+      yield DisplayListShows.data(_metaFromResponse(response));
     } catch (e) {
       yield DisplayListShows.error(e.toString());
     }
@@ -70,16 +75,50 @@ class AllShowsBloc extends Bloc<AllShowsEvent, AllShowsState> {
           keyword.isEmpty ||
           show.name.toLowerCase().contains(keyword.toLowerCase());
 
-      yield DisplayListShows.data(
-        Meta(
-          nowShowing: response.nowShowing.where(query).toList(),
-          comingSoon: response.comingSoon.where(query).toList(),
-          exclusive: response.exclusive.where(query).toList(),
-        ),
-      );
+      response.nowShowing = response.nowShowing.where(query).toList();
+      response.comingSoon = response.comingSoon.where(query).toList();
+      response.exclusive = response.exclusive.where(query).toList();
+
+      final meta = _metaFromResponse(response);
+
+      yield DisplayListShows.data(meta);
     } catch (e) {
       yield DisplayListShows.error(e.toString());
     }
+  }
+
+  Stream<AllShowsState> _mapClickIconSortToState() async* {
+    yield OpenSortOption(isOpen: true, showSortBy: showSortBy);
+  }
+
+  Stream<AllShowsState> _mapSortByChanged(SHOW_SORT_BY showSortBy) async* {
+    this.showSortBy = showSortBy;
+
+    yield UpdateToolbarState(showSearchField: false);
+
+    yield* _mapSearchQueryChangedToState("");
+  }
+
+  Meta _metaFromResponse(AllShowsByTypeResponse response) {
+    //this logic should be done at server side
+    int Function(Show, Show) sortBy;
+    if (showSortBy == SHOW_SORT_BY.NAME) {
+      sortBy = sortByName;
+    } else if (showSortBy == SHOW_SORT_BY.RATING) {
+      sortBy = sortByRating;
+    } else {
+      sortBy = sortByName;
+    }
+
+    response.nowShowing.sort(sortBy);
+    response.comingSoon.sort(sortBy);
+    response.exclusive.sort(sortBy);
+
+    return Meta(
+      nowShowing: response.nowShowing,
+      comingSoon: response.comingSoon,
+      exclusive: response.exclusive,
+    );
   }
 }
 
