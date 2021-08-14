@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'barrel_home.dart';
 import 'home_banner/bloc/bloc.dart';
 import 'home_categories/bloc/bloc.dart';
+import 'home_shows_category/bloc/bloc.dart';
 import 'recommended_seats/bloc/bloc.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,6 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
         BlocProvider(
             create: (context) =>
                 HomeBannerBloc(homeBloc: BlocProvider.of<HomeBloc>(context))),
+        BlocProvider(
+            create: (context) => HomeShowsCategoryBloc(
+                homeBloc: BlocProvider.of<HomeBloc>(context))),
         BlocProvider(
             create: (context) =>
                 HomeCategoryBloc(homeBloc: BlocProvider.of<HomeBloc>(context))),
