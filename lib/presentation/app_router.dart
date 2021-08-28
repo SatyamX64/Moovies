@@ -1,3 +1,4 @@
+import 'package:findseat/model/entity/entity.dart';
 import 'package:findseat/presentation/screen/list_all_cine/barrel_list_all_cine.dart';
 import 'package:flutter/material.dart';
 import 'screen/all_shows/sc_all_shows.dart';
@@ -33,7 +34,8 @@ class AppRouter {
       case ALL_SHOWS:
         return MaterialPageRoute(builder: (_) => AllShowsScreen());
       case SHOW_INFO:
-        return MaterialPageRoute(builder: (_) => ShowInfoScreen());
+        var show = settings.arguments as Show;
+        return MaterialPageRoute(builder: (_) => ShowInfoScreen(show: show));
       case BOOK_TIME_SLOT:
         return MaterialPageRoute(builder: (_) => BookTimeSlotScreen());
       case BOOK_SEAT_TYPE:
