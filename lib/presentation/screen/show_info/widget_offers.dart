@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:findseat/model/entity/entity.dart';
 import 'package:findseat/presentation/common_widgets/barrel_common_widgets.dart';
 import 'package:findseat/presentation/custom_ui/custom_ui.dart';
 import 'package:findseat/utils/my_const/my_const.dart';
@@ -7,39 +8,49 @@ import 'package:flutter/material.dart';
 import 'package:dotted_border/dotted_border.dart';
 
 class WidgetOffers extends StatelessWidget {
+  final Show show;
+
+  WidgetOffers({required this.show});
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       color: COLOR_CONST.WHITE,
       height: 156,
-      child: ListView(
-        physics: ClampingScrollPhysics(),
-        children: <Widget>[
-          Text('Your offers', style: FONT_CONST.MEDIUM_BLACK2_14),
-          WidgetSpacer(height: 14),
-          Container(
-            height: 81,
-            child: ListView(
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                _WidgetGrabReward(
-                  iconPath: 'assets/ic_gift.svg',
-                  textColor: COLOR_CONST.RED2,
-                  iconBgColor: COLOR_CONST.GIFT_BG1,
-                ),
-                WidgetSpacer(width: 20),
-                _WidgetGrabReward(
-                  iconPath: 'assets/ic_gift_green.svg',
-                  textColor: COLOR_CONST.GREEN2,
-                  iconBgColor: COLOR_CONST.GIFT_BG2,
-                ),
-              ],
-            ),
-          )
-        ],
+      child: ListView.separated(
+        shrinkWrap: true,
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: show.offers.length,
+        itemBuilder: (context, index) {
+          var offer = show.offers[index];
+          var iconPath = '';
+          Color textColor;
+          Color iconBgColor;
+          switch (offer.type) {
+            case OFFER_TYPE.GREEN:
+              iconPath = 'assets/ic_gift.svg';
+              textColor = COLOR_CONST.RED2;
+              iconBgColor = COLOR_CONST.GIFT_BG1;
+              break;
+            case OFFER_TYPE.RED:
+              iconPath = 'assets/ic_gift_green.svg';
+              textColor = COLOR_CONST.GREEN2;
+              iconBgColor = COLOR_CONST.GIFT_BG2;
+              break;
+          }
+
+          return _WidgetGrabReward(
+            iconPath: iconPath,
+            textColor: textColor,
+            iconBgColor: iconBgColor,
+            title: offer.title,
+            content: offer.content,
+          );
+        },
+        separatorBuilder: (context, index) {
+          return WidgetSpacer(width: 20);
+        },
       ),
     );
   }
@@ -49,11 +60,14 @@ class _WidgetGrabReward extends StatelessWidget {
   final String iconPath;
   final Color iconBgColor;
   final Color textColor;
-
+  String title;
+  String content;
   _WidgetGrabReward(
       {required this.iconPath,
       required this.iconBgColor,
-      required this.textColor});
+      required this.textColor,
+      required this.title,
+      required this.content});
 
   @override
   Widget build(BuildContext context) {
@@ -92,12 +106,12 @@ class _WidgetGrabReward extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Wait ! Grab FREE reward',
+                  Text(title,
                       maxLines: 1,
                       style: FONT_CONST.OSWALD_REGULAR_RED2_12
                           .copyWith(color: textColor)),
                   Text(
-                    'Book your seats and tap on the reward box to claim it.',
+                    content,
                     style: FONT_CONST.REGULAR_GRAY4_10,
                     maxLines: 2,
                   ),

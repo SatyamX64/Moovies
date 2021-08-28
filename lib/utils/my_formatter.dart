@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 extension HHmm on Duration {
   String formatHHmm() {
     //1:34:00.000000
@@ -8,5 +10,20 @@ extension HHmm on Duration {
     final textMinute = texts[1].padLeft(2, '0');
 
     return "${textHour}h ${textMinute}m";
+  }
+}
+
+extension FormatNumber on int {
+  String formatDecimalThousand() {
+    //1403 -> 1,403
+    var f = new NumberFormat.decimalPattern("en_US");
+    return f.format(this);
+  }
+}
+
+extension FormatDate on int {
+  String MMM_dd_yyyy() {
+    return DateFormat("MMM dd, yyyy")
+        .format(DateTime.fromMillisecondsSinceEpoch(this * 1000));
   }
 }

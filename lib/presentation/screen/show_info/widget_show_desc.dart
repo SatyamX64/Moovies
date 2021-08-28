@@ -42,8 +42,7 @@ class WidgetShowDesc extends StatelessWidget {
 
   Widget _buildShowName_Date() {
     final name = show.name;
-    final textDate = DateFormat("MMM dd, yyyy")
-        .format(DateTime.fromMillisecondsSinceEpoch(show.releaseDate * 1000));
+    final textDate = show.releaseDate.MMM_dd_yyyy();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

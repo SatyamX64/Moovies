@@ -8,4 +8,10 @@ void main() {
 
     expect(result, "01h 34m");
   });
+  test('Format decimal', () {
+    String result = 1403.formatDecimalThousand();
+    print(result);
+
+    expect(result, "1,403");
+  });
 }
